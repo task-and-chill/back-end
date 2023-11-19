@@ -1,10 +1,7 @@
 const { Pool } = require("pg");
 const dotenv = require("dotenv");
-
-// Configura las variables de entorno desde el archivo .env
 dotenv.config();
 
-// Configuración de la conexión a PostgreSQL
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -18,6 +15,12 @@ pool.on("error", (err, client) => {
   console.error("Error in PostgreSQL pool", err);
 });
 
+// Registrar un mensaje cuando se establece una nueva conexión
+pool.on("connect", () => {
+  console.log("Connected to the database");
+});
+
 module.exports = {
   query: (text, params) => pool.query(text, params),
+  end: () => pool.end(),
 };
