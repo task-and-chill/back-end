@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const db = require("./db"); // Importar el módulo de la base de datos
+const db = require("./db");
 
 const app = express();
 app.use(cors());
@@ -16,9 +16,3 @@ db.query("SELECT NOW()", [])
     console.log("Hora actual en la base de datos:", res.rows[0].now)
   )
   .catch((err) => console.error(err));
-
-function main() {
-  // Tu código aquí
-}
-
-main();
