@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db");
+const db = require("../sequelizeConfig");
+const Mensaje = require("./message");
 
 const Usuario = db.define("Usuario", {
   name: {
@@ -32,10 +33,9 @@ const Usuario = db.define("Usuario", {
   },
 });
 
-// relaciones de usuario con trabajo
-
-Usuario.hasMany(Trabajo, { as: "trabajos", foreignKey: "clientId" });
-Trabajo.belongsTo(Usuario, { as: "cliente", foreignKey: "clientId" });
+// Relaciones de usuario con trabajo
+Usuario.hasMany(db.models.Trabajo, { as: "trabajos", foreignKey: "clientId" });
+db.models.Trabajo.belongsTo(Usuario, { as: "cliente", foreignKey: "clientId" });
 Usuario.hasMany(Mensaje, { as: "mensajesCliente", foreignKey: "clientId" });
 Usuario.hasMany(Mensaje, {
   as: "mensajesProfesional",

@@ -21,7 +21,8 @@
     "nodemailer": "^6.6.3",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "sequelize": "^6.35.1"
   },
   "devDependencies": {
     "node-dev": "^6.3.0"
